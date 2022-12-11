@@ -60,6 +60,79 @@ void afisare(client CLIENT[100], int n)
     SHOWCONDITION = 0;
 }
 
+void editare_varsta(client CLIENT[100], int n)
+{
+    int i;
+    char x[10], numeclient[30];
+    cout << "Al carui client doriti sa schimbati numele? " << endl << endl;
+    cin.get();
+    cin.getline(numeclient,29);
+    for (i = 0; i < n; i++)
+    {
+        if (strcasecmp(numeclient,CLIENT[i].nume) == 0)
+        {
+            cout << "Introduceti noua varsta a clientului. " << endl << endl;
+            cin >> CLIENT[i].varsta;
+        }     
+    }
+}
+
+void editare_titlu(client CLIENT[100], int n)
+{
+    int i, conditie = 1;
+    char x[10];
+    char titlucarte[30], titlunoucarte[30];
+    cout << "Al carui client doriti sa schimbati numele? " << endl << endl;
+    cin.get();
+    cin.getline(titlucarte,29);
+    for (i = 0; i < n; i++)
+    {
+        if (strcasecmp(titlucarte,CLIENT[i].carte_client->titlu) == 0)
+        {
+            cout << "Introduceti titlu al cartii." << endl << endl;
+            cin.getline(titlunoucarte,29);
+            strcpy(CLIENT[i].nume,titlunoucarte);
+            conditie = 0;
+        }
+    }
+    cout << "CONDITIE = " << conditie << endl;
+    if (conditie != 0)
+    {
+        cout << endl << endl;
+        cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
+        cin.getline(x,2);
+        SHOWCONDITION = 0;
+    }     
+}
+
+void editare_nume(client CLIENT[100], int n)
+{
+    int i, conditie = 1;
+    char x[10];
+    char numeclient[30], numenouclient[30];
+    cout << "Al carui client doriti sa schimbati numele? " << endl << endl;
+    cin.get();
+    cin.getline(numeclient,29);
+    for (i = 0; i < n; i++)
+    {
+        if (strcasecmp(numeclient,CLIENT[i].nume) == 0)
+        {
+            cout << "Introduceti noul nume al clientului." << endl << endl;
+            cin.getline(numenouclient,29);
+            strcpy(CLIENT[i].nume,numenouclient);
+            conditie = 0;
+        }
+    }
+    cout << "CONDITIE = " << conditie << endl;
+    if (conditie != 0)
+    {
+        cout << endl << endl;
+        cout << "Nu s-a putut gasi niciun client cu acest nume." << endl;
+        cin.getline(x,2);
+        SHOWCONDITION = 0;
+    }     
+}
+
 void sort_nume(client CLIENT[100], int n)
 {
     int i, j;
@@ -111,16 +184,31 @@ void sort_timp(client CLIENT[100], int n)
             }
 }
 
-void stergere_client(client CLIENT[100], int n)
+void stergere_client(client CLIENT[100], int &n)
 {
-    int x, i;
-    cout << "Ce client doriti sa eliminati?";
-    cin >> x;
-    for (i = x-1; i <= n; i++)
+    int i, k, j;
+    char x[51];
+    for (j = 0; j < n; j++)
     {
-        strcpy(CLIENT[i].nume,CLIENT[i+1].nume);
-        CLIENT[i] = CLIENT[i+1];
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
     }
+    cout << endl << endl;
+    cout << "Ce client doriti sa eliminati?" << endl << endl;
+    cin.get();
+    cin.getline(x,49);
+    for (k = 0; k < n; k++)
+        if (strcasecmp(CLIENT[k].nume,x) == 0)
+            for (i = k; i <= n; i++)
+            {
+                strcpy(CLIENT[i].nume,CLIENT[i+1].nume);
+                CLIENT[i] = CLIENT[i+1];
+            }
     n--;
 }
 
@@ -173,6 +261,24 @@ void show_editcarte_menu()
     cout << "====================================" << endl;
     cout << endl;
     cin >> choice_submenu;
+    switch (choice_submenu)
+    {
+        case 1:
+
+        case 2:
+
+        case 3:
+
+        case 4:
+
+        case 5:
+        clrscr();
+        SHOWCONDITION = 1;
+        break;
+        case 6:
+        SHOWCONDITION = 0;
+        break;
+    }
 }
 
 
@@ -199,13 +305,20 @@ void show_edit_menu()
     switch(choice_submenu)
     {
         case 1:
-
+        clrscr();
+        editare_nume(CLIENT,n);
+        SHOWCONDITION = 0;
         case 2:
-        
+        clrscr();
+        editare_varsta(CLIENT,n);
+        SHOWCONDITION = 0;
         case 3:
-
+        clrscr();
+        show_editcarte_menu();
+        SHOWCONDITION = 0;
         case 4:
         SHOWCONDITION = 0;
+        break;
     }
 }
 
@@ -242,16 +355,18 @@ void gestionare_show_menu()
         SHOWCONDITION = 0;
         break;
         case 3:
+        clrscr();
         show_edit_menu();
         case 4:
         SHOWCONDITION = 0;
+        break;
     }
 }
 
 void show_sort_menu()
 {
     int choice_submenu;
-    cout << "=============== MENU ===============" << endl;
+    cout << "=============== SORT ===============" << endl;
     cout << "#                                  #" << endl;
     cout << "#    DUPA:                         #" << endl;
     cout << "#                                  #" << endl;
@@ -297,7 +412,7 @@ void show_main_menu()
     cout << "=============== MENU ===============" << endl;
     cout << "#                                  #" << endl;
     cout << "#  [1] Sortare                     #" << endl;
-    cout << "#  [2] Afisare                     #" << endl;
+    cout << "#  [2] Afisare Clienti             #" << endl;
     cout << "#  [3] Gestionare Clienti          #" << endl;
     cout << "#  [4] Cautare                     #" << endl;
     cout << "#  [5] Exit                        #" << endl;
@@ -309,7 +424,7 @@ void show_main_menu()
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
     cout << "====================================" << endl;
-    cout << endl;  // aici tb clrscr flush
+    cout << endl;
     cin >> choice_menu;
     switch(choice_menu)
     {
@@ -340,16 +455,27 @@ void show_main_menu()
 int main()
 {
     int i;
-    cout << "Cati ologi vreti sa introduceti? " << endl;
+    cout << "Cati ologi vreti sa introduceti? " << endl << endl;
     cin >> n;
+    clrscr();
     cin.get();
     for (i = 0; i < n; i++)
         cin.getline(CLIENT[i].nume,100);
     cout << endl << endl;
+    //SHOWCONDITION este variabla ce rezolva problema cu functii ce se apeleaza una pe alta
+    //SHOWCONDITION 0: Show Main Menu
+    //SHOWCONDITION 1: Show Edit Menu
     while (SHOWCONDITION == 0)
     {
         clrscr();
-        SHOWCONDITION = 1;
+        SHOWCONDITION = -1;
         show_main_menu();
     }
+    while (SHOWCONDITION == 1)
+    {
+        clrscr();
+        SHOWCONDITION = -1;
+        show_edit_menu();
+    }
+    
 }
