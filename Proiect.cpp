@@ -1,19 +1,23 @@
 /*
-DE FACUT: 
+DE FACUT:
 -> functie sortare modulara x
 -> afisare completa    x
 -> stergere client     x
 -> adaugare client     x
--> editare client      x  
+-> editare client      x
 -> editare carte       x
 -> search client       x
--> search carte
--> exit
+-> search carte        x
+-> exit                x
+-> statistici
+-> back
+-> secret
 */
 
 #include <iostream>
 #include <cstring>
 #include <string.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -35,7 +39,7 @@ struct client{
 
 int SHOWCONDITION = 0, n;
 client CLIENT[100];
-carte CARTE[100]; 
+carte CARTE[100];
 
 // Functie ce sterge ecranul
 void clrscr()
@@ -52,7 +56,7 @@ void afisare(client CLIENT[100], int n)
     {
         cout << "===== " << CLIENT[i].nume << " =====" << endl;
         cout << "COD CLIENT: " << CLIENT[i].cod << endl;
-        cout << "VARSTA: " << CLIENT[i].varsta << endl << endl;
+        cout << "VARSTA: " << CLIENT[i].varsta << " ani" << endl << endl;
         cout << "TITLU CARTE: " << CARTE[i].titlu << endl;
         cout << "AUTOR: " << CARTE[i].autor << endl;
         cout << "TIP CARTE: " << CARTE[i].tip << endl;
@@ -69,8 +73,19 @@ void afisare(client CLIENT[100], int n)
 void editare_varsta(client CLIENT[100], int n)
 {
     int i;
-    char x[10], numeclient[30];
-    cout << "Al carui client doriti sa schimbati numele? " << endl << endl;
+    char x[10], numeclient[30], j;
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
+    cout << "Al carui client doriti sa schimbati varsta? " << endl << endl;
     cin.get();
     cin.getline(numeclient,29);
     for (i = 0; i < n; i++)
@@ -79,7 +94,7 @@ void editare_varsta(client CLIENT[100], int n)
         {
             cout << "Introduceti noua varsta a clientului. " << endl << endl;
             cin >> CLIENT[i].varsta;
-        }     
+        }
     }
 }
 
@@ -87,9 +102,20 @@ void editare_varsta(client CLIENT[100], int n)
 // Cautarea cartii se face dupa titlul ei.
 void editare_timp(client CLIENT[100], int n)
 {
-    int i, conditie = 1, timpnoucarte;
+    int i, conditie = 1, timpnoucarte, j;
     char x[10];
     char titlucarte[30];
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
     cout << "Al carei carti doriti sa schimbati timpul?" << endl << endl;
     cin.get();
     cin.getline(titlucarte,29);
@@ -109,16 +135,27 @@ void editare_timp(client CLIENT[100], int n)
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
         SHOWCONDITION = 0;
-    }    
+    }
 }
 
 // Functie ce permite modificarea tipului (genului) de carte.
 // Cautarea cartii se face dupa titlul ei.
 void editare_tip(client CLIENT[100], int n)
 {
-    int i, conditie = 1;
+    int i, conditie = 1, j;
     char x[10];
     char titlucarte[30], tipnoucarte[30];
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
     cout << "Al carei carti doriti sa schimbati tipul?" << endl << endl;
     cin.get();
     cin.getline(titlucarte,29);
@@ -139,14 +176,25 @@ void editare_tip(client CLIENT[100], int n)
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
         SHOWCONDITION = 0;
-    }     
+    }
 }
 
 // Functie ce cauta SI afiseaza toate datele despre un client anume.
 void search_carte(client CLIENT[100], int n)
 {
-    int i, conditie = 0;
+    int i, conditie = 0, j;
 	char x[10], cartecautata[41];
+	for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
 	cout << "Introduceti titlul cartii cautate: " << endl << endl;
     cin.get();
 	cin.getline(cartecautata,40);
@@ -157,7 +205,7 @@ void search_carte(client CLIENT[100], int n)
             clrscr();
 			cout << "===== " << CLIENT[i].nume << " =====" << endl;
             cout << "COD CLIENT: " << CLIENT[i].cod << endl;
-            cout << "VARSTA: " << CLIENT[i].varsta << endl << endl;
+            cout << "VARSTA: " << CLIENT[i].varsta << " ani" << endl << endl;
             cout << "TITLU CARTE: " << CARTE[i].titlu << endl;
             cout << "AUTOR: " << CARTE[i].autor << endl;
             cout << "TIP CARTE: " << CARTE[i].tip << endl;
@@ -176,8 +224,19 @@ void search_carte(client CLIENT[100], int n)
 // Functie ce cauta SI afiseaza toate datele despre un client anume
 void search_client(client CLIENT[100], int n)
 {
-	int i, conditie = 0;
+	int i, conditie = 0, j;
 	char x[10], clientcautat[41];
+	for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
 	cout << "Introduceti numele clientului cautat: " << endl << endl;
     cin.get();
 	cin.getline(clientcautat,40);
@@ -188,14 +247,14 @@ void search_client(client CLIENT[100], int n)
             clrscr();
 			cout << "===== " << CLIENT[i].nume << " =====" << endl;
             cout << "COD CLIENT: " << CLIENT[i].cod << endl;
-            cout << "VARSTA: " << CLIENT[i].varsta << endl << endl;
+            cout << "VARSTA: " << CLIENT[i].varsta << " ani" << endl << endl;
             cout << "TITLU CARTE: " << CARTE[i].titlu << endl;
             cout << "AUTOR: " << CARTE[i].autor << endl;
             cout << "TIP CARTE: " << CARTE[i].tip << endl;
             cout << "TIMP RAMAS: " << CARTE[i].timp << " zile" << endl << endl;
 		    conditie = 1;
 		}
-		
+
 	}
     if (conditie == 0)
 		{
@@ -209,9 +268,20 @@ void search_client(client CLIENT[100], int n)
 // Cautarea si modificarea se face dupa numele cartii de modificat
 void editare_autor(client CLIENT[100], int n)
 {
-    int i, conditie = 1;
+    int i, conditie = 1, j;
     char x[10];
     char autorcarte[30], autornoucarte[30];
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
     cout << "Al carei carti doriti sa schimbati autorul?" << endl << endl;
     cin.get();
     cin.getline(autorcarte,29);
@@ -232,16 +302,27 @@ void editare_autor(client CLIENT[100], int n)
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
         SHOWCONDITION = 0;
-    }     
+    }
 }
 
 // Functie ce permite utilizatorul sa modifice titlul unei carti (CARTE[i].titlu)
 // Cautarea si modificarea se fac dupa numele cartii de modificat
 void editare_titlu(client CLIENT[100], int n)
 {
-    int i, conditie = 1;
+    int i, conditie = 1, j;
     char x[10];
     char titlucarte[30], titlunoucarte[30];
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
     cout << "Al carei carti doriti sa schimbati numele?" << endl << endl;
     cin.get();
     cin.getline(titlucarte,29);
@@ -261,15 +342,26 @@ void editare_titlu(client CLIENT[100], int n)
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
         SHOWCONDITION = 0;
-    }     
+    }
 }
 
 // Functie ce permite modificarea numelui unui client
 void editare_nume(client CLIENT[100], int n)
 {
-    int i, conditie = 1;
+    int i, conditie = 1, j;
     char x[10];
     char numeclient[30], numenouclient[30];
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
     cout << "Al carui client doriti sa schimbati numele? " << endl << endl;
     cin.get();
     cin.getline(numeclient,29);
@@ -283,7 +375,12 @@ void editare_nume(client CLIENT[100], int n)
             conditie = 0;
         }
     }
-    cout << "CONDITIE = " << conditie << endl;
+    if (conditie == 0)
+    {
+        cout << endl << "Succes! Numele clientului a fost modificat." << endl;
+        system("Pause");
+        SHOWCONDITION = 0;
+    }
     if (conditie != 0)
     {
         cout << endl << endl;
@@ -291,10 +388,10 @@ void editare_nume(client CLIENT[100], int n)
         cin.get();
         cin.getline(x,2);
         SHOWCONDITION = 0;
-    }     
+    }
 }
 
-// Functie ce sorteaza dar nu afiseaza toti clientii si datele acestora in ordine alfabetica 
+// Functie ce sorteaza dar nu afiseaza toti clientii si datele acestora in ordine alfabetica
 void sort_nume(client CLIENT[100], int n)
 {
     int i, j;
@@ -312,7 +409,7 @@ void sort_nume(client CLIENT[100], int n)
             }
 }
 
-// Functie ce sorteaza dar nu afiseaza toti clientii si datele acestora in ordine crescatoare, dupa codul de client 
+// Functie ce sorteaza dar nu afiseaza toti clientii si datele acestora in ordine crescatoare, dupa codul de client
 void sort_cod(client CLIENT[100], int n)
 {
     int i, j;
@@ -351,13 +448,13 @@ void sort_timp(client CLIENT[100], int n)
 // Functie ce elimina un client impreuna cu toate datele sale. Se aplica si n--
 void stergere_client(client CLIENT[100], int &n)
 {
-    int i, k, j;
+    int i, k, j, conditie = 0;
     char x[51];
     for (j = 0; j < n; j++)
     {
         cout << "===== " << CLIENT[j].nume << " =====" << endl;
         cout << "COD CLIENT: " << CLIENT[j].cod << endl;
-        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << " ani" << endl << endl;
         cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
         cout << "AUTOR: " << CARTE[j].autor << endl;
         cout << "TIP CARTE: " << CARTE[j].tip << endl;
@@ -369,12 +466,26 @@ void stergere_client(client CLIENT[100], int &n)
     cin.getline(x,49);
     for (k = 0; k < n; k++)
         if (strcasecmp(CLIENT[k].nume,x) == 0)
+        {
             for (i = k; i <= n; i++)
             {
                 strcpy(CLIENT[i].nume,CLIENT[i+1].nume);
                 CLIENT[i] = CLIENT[i+1];
             }
-    n--;
+            n--;
+            conditie = 1;
+        }
+    if (conditie == 1)
+    {
+        cout << endl << endl << "Succes! Datele clientului '" << x << "' au fost eliminate." << endl << endl;
+        system("Pause");
+    }
+    if (conditie == 0)
+    {
+        cout << endl << endl << "Nu s-a putut gasi un client cu acest nume." << endl << endl;
+        system("Pause");
+    }
+
 }
 
 // Functie ce adauga un client. Odata ce utilizatorul este intrebat de carte, se poate raspunde "Da" (case insensitive)
@@ -402,19 +513,19 @@ void adaugare_client(client CLIENT[100], int &n)
         cout << "Introduceti tipul cartii: ";
         cin.getline(CARTE[n].tip,100);
         CARTE[n].timp = 14;
-        n++; 
+        n++;
     }
     else
         n++;
 }
 
-// Not yet implemented.
 void gigachad()
 {
-    cout << "   " << endl;
+    char x[10];
+    cin.getline(x,2);
+    SHOWCONDITION = 0;
 }
 
-// Not yet implemented.
 void show_secret_menu()
 {
     int choice_submenu;
@@ -438,7 +549,8 @@ void show_secret_menu()
     switch(choice_submenu)
     {
         case 1:
-        
+        clrscr();
+        gigachad();
         break;
     }
 }
@@ -604,6 +716,7 @@ void gestionare_show_menu()
         SHOWCONDITION = 0;
         break;
         case 2:
+        clrscr();
         stergere_client(CLIENT,n);
         SHOWCONDITION = 0;
         break;
@@ -671,8 +784,8 @@ void show_main_menu()
     cout << "#  [2] Afisare Clienti             #" << endl;
     cout << "#  [3] Gestionare Clienti          #" << endl;
     cout << "#  [4] Cautare                     #" << endl;
-    cout << "#  [5] Exit                        #" << endl;
-    cout << "#  [6] Secret                      #" << endl;
+    cout << "#  [5] Secret                      #" << endl;
+    cout << "#  [6] Exit                        #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
@@ -700,11 +813,13 @@ void show_main_menu()
         clrscr();
         show_search_menu();
         break;
-        case 5:
-        clrscr();
-        exit(0);
         case 6:
         clrscr();
+        exit(0);
+        case 5:
+        clrscr();
+        show_secret_menu();
+        break;
     }
 }
 
@@ -725,5 +840,5 @@ int main()
         clrscr();
         SHOWCONDITION = 1;
         show_main_menu();
-    }    
+    }
 }
