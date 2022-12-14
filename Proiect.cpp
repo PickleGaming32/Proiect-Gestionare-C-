@@ -12,6 +12,7 @@ DE FACUT:
 -> statistici
 -> back
 -> secret
+-> fisiere
 */
 
 #include <iostream>
@@ -519,11 +520,99 @@ void adaugare_client(client CLIENT[100], int &n)
         n++;
 }
 
-void gigachad()
+void statistic_titlu(client CLIENT[100], int n)
 {
-    char x[10];
-    cin.getline(x,2);
-    SHOWCONDITION = 0;
+    int i, j, ok=0, maxx=0, save;
+    cin.get();
+    for(i=0;i< n - 1;i++)
+    {
+        for(j=i+1;j<n;j++)
+            if(strcasecmp(CARTE[i].titlu, CARTE[j].titlu)==0)
+                ok++;
+
+        if(maxx<ok)
+        {
+            maxx=ok;
+            save=i;
+        }
+        else
+        {
+            if (maxx == ok)
+                maxx = 0;
+        }
+        ok=0;
+    }
+    if (maxx != 0)
+        cout<<endl<<"Cartea cea mai citita este " <<CARTE[save].titlu <<".";
+    else
+        cout << "Exista carti egal citite in data de baza.";
+
+    cout<<endl<<endl;
+    system("Pause");
+}
+
+void statistic_varsta(client CLIENT[100], int n)
+{
+    float result = 0;
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        result = result + CLIENT[i].varsta;
+    }
+    result = result / i;
+    cout << "Varsta medie a tuturor clientilor este de " << result << " ani." << endl << endl;
+    system("Pause");
+}
+
+void show_statistic_menu()
+{
+    int choice_submenu;
+    cout << "============== Secret ==============" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#   [1] Varsta                     #" << endl;
+    cout << "#   [2] Carte                      #" << endl;
+    cout << "#   [3] Autor                      #" << endl;
+    cout << "#   [4] Tip                        #" << endl;
+    cout << "#   [5] Back                       #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "====================================" << endl;
+    cout << endl;
+    cin >> choice_submenu;
+    switch (choice_submenu)
+    {
+        case 1:
+        clrscr();
+        statistic_varsta(CLIENT,n);
+        SHOWCONDITION = 0;
+        break;
+        case 2:
+        clrscr();
+        statistic_titlu(CLIENT,n);
+        SHOWCONDITION = 0;
+        break;
+        case 3:
+        clrscr();
+        cout << "Not yet implemented" << endl;
+        system("Pause");
+        SHOWCONDITION = 0;
+        break;
+        case 4:
+        clrscr();
+        cout << "Not yet implemented" << endl;
+        system("Pause");
+        SHOWCONDITION = 0;
+        break;
+        case 5:
+        clrscr();
+        SHOWCONDITION = 0;
+        break;
+    }
 }
 
 void show_secret_menu()
@@ -548,10 +637,6 @@ void show_secret_menu()
     cin >> choice_submenu;
     switch(choice_submenu)
     {
-        case 1:
-        clrscr();
-        gigachad();
-        break;
     }
 }
 
@@ -784,7 +869,7 @@ void show_main_menu()
     cout << "#  [2] Afisare Clienti             #" << endl;
     cout << "#  [3] Gestionare Clienti          #" << endl;
     cout << "#  [4] Cautare                     #" << endl;
-    cout << "#  [5] Secret                      #" << endl;
+    cout << "#  [5] Statistics                  #" << endl;
     cout << "#  [6] Exit                        #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
@@ -818,7 +903,7 @@ void show_main_menu()
         exit(0);
         case 5:
         clrscr();
-        show_secret_menu();
+        show_statistic_menu();
         break;
     }
 }
