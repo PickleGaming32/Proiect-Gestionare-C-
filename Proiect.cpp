@@ -19,8 +19,12 @@ DE FACUT:
 #include <cstring>
 #include <string.h>
 #include <windows.h>
+#include <fstream>
 
 using namespace std;
+
+ifstream fin("input.txt");
+ofstream fout("output.txt");
 
 // Mentionabil este faptul ca toate datele CLIENT.carte_client->titlu/tip/autor/timp sunt automat aduse in functie odata cu chemarea
 // CLIENT[100] ca parametru, doar ca se foloseste sintaxa CARTE.tip/autor/timp pentru accesarea si modificarea datelor
@@ -862,6 +866,7 @@ void show_sort_menu()
 // Main menu. Self-explanatory
 void show_main_menu()
 {
+    int i;
     int choice_menu;
     cout << "=============== MENU ===============" << endl;
     cout << "#                                  #" << endl;
@@ -900,7 +905,19 @@ void show_main_menu()
         break;
         case 6:
         clrscr();
+        fout << n << endl;
+        for (i = 0; i < n; i++)
+        {
+        fout << CLIENT[i].nume << endl;
+        fout <<  CLIENT[i].cod << endl;
+        fout << CLIENT[i].varsta << endl;
+        fout << CARTE[i].titlu << endl;
+        fout << CARTE[i].autor << endl;
+        fout << CARTE[i].tip << endl;
+        fout << CARTE[i].timp << endl;
+        }
         exit(0);
+        break;
         case 5:
         clrscr();
         show_statistic_menu();
@@ -911,13 +928,21 @@ void show_main_menu()
 int main()
 {
     int i;
-    cout << "Cati clienti vreti sa introduceti? " << endl << endl;
-    cin >> n;
-    clrscr();
-    cin.get();
+    fin >> n;
+    fin.get();
     for (i = 0; i < n; i++)
-        cin.getline(CLIENT[i].nume,100);
-    cout << endl << endl;
+    {
+        fin.getline(CLIENT[i].nume,99);
+        fin >> CLIENT[i].cod;
+        fin >> CLIENT[i].varsta;
+        fin.get();
+        fin.getline(CARTE[i].titlu, 49);
+        fin.getline(CARTE[i].autor, 49);
+        fin.getline(CARTE[i].tip,30);
+        fin >> CARTE[i].timp;
+        fin.get();
+    }
+    clrscr();
     //SHOWCONDITION este variabla ce rezolva problema cu functii ce se apeleaza una pe alta
     //SHOWCONDITION 0: Show Main Menu
     while (SHOWCONDITION == 0)
