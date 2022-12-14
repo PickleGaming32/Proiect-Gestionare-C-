@@ -23,9 +23,6 @@ DE FACUT:
 
 using namespace std;
 
-ifstream fin("input.txt");
-ofstream fout("output.txt");
-
 // Mentionabil este faptul ca toate datele CLIENT.carte_client->titlu/tip/autor/timp sunt automat aduse in functie odata cu chemarea
 // CLIENT[100] ca parametru, doar ca se foloseste sintaxa CARTE.tip/autor/timp pentru accesarea si modificarea datelor
 struct carte{
@@ -863,6 +860,23 @@ void show_sort_menu()
     }
 }
 
+void read()
+{
+    int i;
+    ofstream f("input.txt");
+    f << n << endl;
+        for (i = 0; i < n; i++)
+        {
+        f << CLIENT[i].nume << endl;
+        f <<  CLIENT[i].cod << endl;
+        f << CLIENT[i].varsta << endl;
+        f << CARTE[i].titlu << endl;
+        f << CARTE[i].autor << endl;
+        f << CARTE[i].tip << endl;
+        f << CARTE[i].timp << endl;
+        }
+}
+
 // Main menu. Self-explanatory
 void show_main_menu()
 {
@@ -905,17 +919,7 @@ void show_main_menu()
         break;
         case 6:
         clrscr();
-        fout << n << endl;
-        for (i = 0; i < n; i++)
-        {
-        fout << CLIENT[i].nume << endl;
-        fout <<  CLIENT[i].cod << endl;
-        fout << CLIENT[i].varsta << endl;
-        fout << CARTE[i].titlu << endl;
-        fout << CARTE[i].autor << endl;
-        fout << CARTE[i].tip << endl;
-        fout << CARTE[i].timp << endl;
-        }
+        read();
         exit(0);
         break;
         case 5:
@@ -927,20 +931,21 @@ void show_main_menu()
 
 int main()
 {
+    ifstream f("input.txt");
     int i;
-    fin >> n;
-    fin.get();
+    f >> n;
+    f.get();
     for (i = 0; i < n; i++)
     {
-        fin.getline(CLIENT[i].nume,99);
-        fin >> CLIENT[i].cod;
-        fin >> CLIENT[i].varsta;
-        fin.get();
-        fin.getline(CARTE[i].titlu, 49);
-        fin.getline(CARTE[i].autor, 49);
-        fin.getline(CARTE[i].tip,30);
-        fin >> CARTE[i].timp;
-        fin.get();
+        f.getline(CLIENT[i].nume,99);
+        f >> CLIENT[i].cod;
+        f >> CLIENT[i].varsta;
+        f.get();
+        f.getline(CARTE[i].titlu, 49);
+        f.getline(CARTE[i].autor, 49);
+        f.getline(CARTE[i].tip,30);
+        f >> CARTE[i].timp;
+        f.get();
     }
     clrscr();
     //SHOWCONDITION este variabla ce rezolva problema cu functii ce se apeleaza una pe alta
