@@ -9,10 +9,10 @@ DE FACUT:
 -> search client       x
 -> search carte        x
 -> exit                x
--> statistici
+-> statistici          x
 -> back
 -> secret
--> fisiere
+-> fisiere             x
 */
 
 #include <iostream>
@@ -20,6 +20,7 @@ DE FACUT:
 #include <string.h>
 #include <windows.h>
 #include <fstream>
+#include <cstdio>
 
 using namespace std;
 
@@ -69,7 +70,34 @@ void afisare(client CLIENT[100], int n)
     SHOWCONDITION = 0;
 }
 
-
+// Functie ce permite editarea codului de identificare a unui client. Din pacate functia rand() nu este random.
+void editare_cod(client CLIENT[100], int n)
+{
+    int i;
+    char x[10], numeclient[30], j;
+    for (j = 0; j < n; j++)
+    {
+        cout << "===== " << CLIENT[j].nume << " =====" << endl;
+        cout << "COD CLIENT: " << CLIENT[j].cod << endl;
+        cout << "VARSTA: " << CLIENT[j].varsta << endl << endl;
+        cout << "TITLU CARTE: " << CARTE[j].titlu << endl;
+        cout << "AUTOR: " << CARTE[j].autor << endl;
+        cout << "TIP CARTE: " << CARTE[j].tip << endl;
+        cout << "TIMP RAMAS: " << CARTE[j].timp << " zile" << endl << endl << endl;
+    }
+    cout << endl << endl;
+    cout << "Al carui client doriti sa schimbati codul de identificare? " << endl << endl;
+    cin.get();
+    cin.getline(numeclient,29);
+    for (i = 0; i < n; i++)
+    {
+        if (strcasecmp(numeclient,CLIENT[i].nume) == 0)
+        {
+            cout << "Introduceti noul cod al clientului. " << endl << endl;
+            cin >> CLIENT[i].cod;
+        }
+    }
+}
 
 // Functie ce modifica varsta unui client (CLIENT[i].varsta)
 void editare_varsta(client CLIENT[100], int n)
@@ -494,8 +522,11 @@ void stergere_client(client CLIENT[100], int &n)
 // pentru a adauga o carte atasata clientului, impreuna cu toate datele necesare
 void adaugare_client(client CLIENT[100], int &n)
 {
-    int x, y;
+    int y, i;
     y = rand();
+    for (i = 0; i < n; i++)
+        if (CLIENT[i].cod == y)
+            y++;
     char rasp[10];
     cin.get();
     cout << "Introduceti numele noului client: ";
@@ -518,8 +549,95 @@ void adaugare_client(client CLIENT[100], int &n)
         n++;
     }
     else
+    {
+        strcpy(CARTE[n].titlu, "N/A");
+        strcpy(CARTE[n].autor, "N/A");
+        strcpy(CARTE[n].tip, "N/A");
+        CARTE[n].timp = 0;
         n++;
+    }
 }
+
+// Functie ce face o pseudo-stergere a datelor clientilor. Mai exact face ca datele care nu sunt overwritten cu alte date sa fie "N/A" in caz
+// de afisare fara editare/adaugare client.
+void clear_data(client CLIENT[100], int &n)
+{
+    int i;
+    char x[10], y[10];
+    cout << R"(                                                         c=====e
+                                                            H
+   ____________                                         _,,_H__
+  (__((__((___()                                       //|     |
+ (__((__((___()()_____________________________________// |ACME |
+(__((__((___()()()------------------------------------'  |_____|)" << endl << endl;
+    cout << "Are you sure? This cannot be undone!" << endl;
+    cin.get();
+    cin.getline(x,4);
+    cout << endl << endl;
+    if (strcasecmp(x,"Da") == 0)
+    {
+        cout << "Are you REALLY sure?" << endl;
+        cin.getline(y,4);
+        if (strcasecmp(y,"Da") == 0)
+        {
+            cout << "3... " << endl;
+            Sleep(630);
+            cout << "2... " << endl;
+            Sleep(630);
+            cout << "1... " << endl;
+            Sleep(630);
+            cout << "BOOM!" << endl;
+            Sleep(550);
+            clrscr();
+            cout << R"(                               ________________
+                          ____/ (  (    )   )  \___
+                         /( (  (  )   _    ))  )   )\
+                       ((     (   )(    )  )   (   )  )
+                     ((/  ( _(   )   (   _) ) (  () )  )
+                    ( (  ( (_)   ((    (   )  .((_ ) .  )_
+                   ( (  )    (      (  )    )   ) . ) (   )
+                  (  (   (  (   ) (  _  ( _) ).  ) . ) ) ( )
+                  ( (  (   ) (  )   (  ))     ) _)(   )  )  )
+                 ( (  ( \ ) (    (_  ( ) ( )  )   ) )  )) ( )
+                  (  (   (  (   (_ ( ) ( _    )  ) (  )  )   )
+                 ( (  ( (  (  )     (_  )  ) )  _)   ) _( ( )
+                  ((  (   )(    (     _    )   _) _(_ (  (_ )
+                   (_((__(_(__(( ( ( |  ) ) ) )_))__))_)___)
+                   ((__)        \\||lll|l||///          \_))
+                            (   /(/ (  )  ) )\   )
+                          (    ( ( ( | | ) ) )\   )
+                           (   /(| / ( )) ) ) )) )
+                         (     ( ((((_(|)_)))))     )
+                          (      ||\(|(|)|/||     )
+                        (        |(||(||)||||        )
+                          (     //|/l|||)|\\ \     )
+                        (/ / //  /|//||||\\  \ \  \ _))";
+            cout << endl << endl << endl;
+            for (i = 0; i < n; i++)
+            {
+                strcpy(CARTE[i].titlu, "N/A");
+                strcpy(CARTE[i].autor, "N/A");
+                strcpy(CARTE[i].tip, "N/A");
+                CARTE[i].timp = 0;
+            }
+            n = 0;
+            Sleep(1100);
+            cout << "Done. All client data cleared." << endl << endl;
+            system("Pause");
+        }
+        else
+        {
+            cout << endl << "Returning to main menu..." << endl << endl;
+            system("Pause");
+        }
+    }
+    else
+    {
+        cout << endl << "Returning to main menu..." << endl << endl;
+        system("Pause");
+    }
+}
+
 
 void statistic_titlu(client CLIENT[100], int n)
 {
@@ -552,6 +670,68 @@ void statistic_titlu(client CLIENT[100], int n)
     system("Pause");
 }
 
+void statistic_tip(client CLIENT[100], int n)
+{
+    int i, j, ok=0, maxx=0, save;
+    cin.get();
+    for(i=0;i< n - 1;i++)
+    {
+        for(j=i+1;j<n;j++)
+            if(strcasecmp(CARTE[i].tip, CARTE[j].tip)==0)
+                ok++;
+
+        if(maxx<ok)
+        {
+            maxx=ok;
+            save=i;
+        }
+        else
+        {
+            if (maxx == ok)
+                maxx = 0;
+        }
+        ok=0;
+    }
+    if (maxx != 0)
+        cout<<endl<<"Tipul de carte cea mai citita este de tip " <<CARTE[save].tip <<".";
+    else
+        cout << "Exista carti citite in cantitate egala de tipuri diferite in data de baza.";
+
+    cout<<endl<<endl;
+    system("Pause");
+}
+
+void statistic_autor(client CLIENT[100], int n)
+{
+    int i, j, ok=0, maxx=0, save;
+    cin.get();
+    for(i=0;i< n - 1;i++)
+    {
+        for(j=i+1;j<n;j++)
+            if(strcasecmp(CARTE[i].autor, CARTE[j].autor)==0)
+                ok++;
+
+        if(maxx<ok)
+        {
+            maxx=ok;
+            save=i;
+        }
+        else
+        {
+            if (maxx == ok)
+                maxx = 0;
+        }
+        ok=0;
+    }
+    if (maxx != 0)
+        cout<<endl<<"Cartea cea mai citita este scrisa de autorul " <<CARTE[save].autor <<".";
+    else
+        cout << "Exista carti scrise de acelasi autor egal citite in data de baza.";
+
+    cout<<endl<<endl;
+    system("Pause");
+}
+
 void statistic_varsta(client CLIENT[100], int n)
 {
     float result = 0;
@@ -568,7 +748,7 @@ void statistic_varsta(client CLIENT[100], int n)
 void show_statistic_menu()
 {
     int choice_submenu;
-    cout << "============== Secret ==============" << endl;
+    cout << "============ Statistic =============" << endl;
     cout << "#                                  #" << endl;
     cout << "#   [1] Varsta                     #" << endl;
     cout << "#   [2] Carte                      #" << endl;
@@ -599,14 +779,12 @@ void show_statistic_menu()
         break;
         case 3:
         clrscr();
-        cout << "Not yet implemented" << endl;
-        system("Pause");
+        statistic_autor(CLIENT,n);
         SHOWCONDITION = 0;
         break;
         case 4:
         clrscr();
-        cout << "Not yet implemented" << endl;
-        system("Pause");
+        statistic_tip(CLIENT,n);
         SHOWCONDITION = 0;
         break;
         case 5:
@@ -619,10 +797,10 @@ void show_statistic_menu()
 void show_secret_menu()
 {
     int choice_submenu;
-    cout << "============== Secret ==============" << endl;
+    cout << "=============== Extra ==============" << endl;
     cout << "#                                  #" << endl;
-    cout << "#   [1] GigaChad                   #" << endl;
-    cout << "#   [2] Editare Autor              #" << endl;
+    cout << "#   [1] Clear All Data             #" << endl;
+    cout << "#   [2] Open Calculator            #" << endl;
     cout << "#   [3] Editare Tip                #" << endl;
     cout << "#   [4] Editare Timp Ramas         #" << endl;
     cout << "#   [5] Back                       #" << endl;
@@ -638,7 +816,13 @@ void show_secret_menu()
     cin >> choice_submenu;
     switch(choice_submenu)
     {
+    case 1:
+    clrscr();
+    clear_data(CLIENT,n);
+    SHOWCONDITION = 0;
+    break;
     }
+
 }
 
 // Meniu pentru accesarea functiilor search_client si search_carte.
@@ -738,8 +922,8 @@ void show_edit_menu()
     cout << "#   [1] Editare Nume               #" << endl;
     cout << "#   [2] Editare Varsta             #" << endl;
     cout << "#   [3] Editare Carte              #" << endl;
-    cout << "#   [4] Back                       #" << endl;
-    cout << "#                                  #" << endl;
+    cout << "#   [4] Editare Cod                #" << endl;
+    cout << "#   [5] Back                       #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
@@ -767,7 +951,12 @@ void show_edit_menu()
         show_editcarte_menu();
         SHOWCONDITION = 0;
         break;
+        case 5:
+        SHOWCONDITION = 0;
+        break;
         case 4:
+        clrscr();
+        editare_cod(CLIENT,n);
         SHOWCONDITION = 0;
         break;
     }
@@ -860,6 +1049,7 @@ void show_sort_menu()
     }
 }
 
+// Functie ce preia datele tuturor clientilor si le salveaza in fisierul "input.txt".
 void read()
 {
     int i;
@@ -877,11 +1067,31 @@ void read()
         }
 }
 
+// Loading screen animation. Self-explanatory.
+void loading_screen()
+{
+    int i, y;
+    cout << R"(.____                     .___.__
+|    |    _________     __| _/|__| ____    ____
+|    |   /  _ \__  \   / __ | |  |/    \  / ___\
+|    |__(  <_> ) __ \_/ /_/ | |  |   |  \/ /_/  >
+|_______ \____(____  /\____ | |__|___|  /\___  /
+        \/         \/      \/         \//_____/  )" << endl << endl;
+    for (i = 0; i <49; i++)
+    {
+        y = 1+ (rand() % 130);
+        cout << "=";
+        Sleep(y);
+    }
+    cout << endl << endl << "Succes!" << endl << endl;
+    system("Pause");
+}
+
 // Main menu. Self-explanatory
 void show_main_menu()
 {
-    int i;
     int choice_menu;
+    clrscr();
     cout << "=============== MENU ===============" << endl;
     cout << "#                                  #" << endl;
     cout << "#  [1] Sortare                     #" << endl;
@@ -894,7 +1104,7 @@ void show_main_menu()
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
+    cout << "#  [0] Extra                       #" << endl;
     cout << "#                                  #" << endl;
     cout << "====================================" << endl;
     cout << endl;
@@ -926,11 +1136,16 @@ void show_main_menu()
         clrscr();
         show_statistic_menu();
         break;
+        case 0:
+        clrscr();
+        show_secret_menu();
+        break;
     }
 }
 
 int main()
 {
+    loading_screen();
     ifstream f("input.txt");
     int i;
     f >> n;
