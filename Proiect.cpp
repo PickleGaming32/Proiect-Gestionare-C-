@@ -40,7 +40,16 @@ struct client{
     carte carte_client[100];
 };
 
-int SHOWCONDITION = 0, n;
+void show_edit_menu();
+void show_editcarte_menu();
+void show_main_menu();
+void show_search_menu();
+void show_secret_menu();
+void show_sort_menu();
+void show_statistic_menu();
+void gestionare_show_menu();
+
+int n;
 client CLIENT[100];
 carte CARTE[100];
 
@@ -67,7 +76,6 @@ void afisare(client CLIENT[100], int n)
     }
     cin.get();
     cin.getline(x,2);
-    SHOWCONDITION = 0;
 }
 
 // Functie ce permite editarea codului de identificare a unui client. Din pacate functia rand() nu este random.
@@ -164,7 +172,6 @@ void editare_timp(client CLIENT[100], int n)
         cout << endl << endl;
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
-        SHOWCONDITION = 0;
     }
 }
 
@@ -205,7 +212,6 @@ void editare_tip(client CLIENT[100], int n)
         cout << endl << endl;
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
-        SHOWCONDITION = 0;
     }
 }
 
@@ -248,7 +254,6 @@ void search_carte(client CLIENT[100], int n)
 			cout << "Nu s-a putut gasi o carte cu acest titlu." << endl << endl;
 		}
 	cin.getline(x,2);
-    SHOWCONDITION = 0;
 }
 
 // Functie ce cauta SI afiseaza toate datele despre un client anume
@@ -291,7 +296,6 @@ void search_client(client CLIENT[100], int n)
 			cout << "Nu s-a putut gasi un client cu acest nume." << endl << endl;
 		}
 	cin.getline(x,2);
-    SHOWCONDITION = 0;
 }
 
 // Functie ce permite utilizatorul sa modifice autorul (CARTE[i].autor)
@@ -331,7 +335,6 @@ void editare_autor(client CLIENT[100], int n)
         cout << endl << endl;
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
-        SHOWCONDITION = 0;
     }
 }
 
@@ -371,7 +374,6 @@ void editare_titlu(client CLIENT[100], int n)
         cout << endl << endl;
         cout << "Nu s-a putut gasi o carte cu acest titlu." << endl;
         cin.getline(x,2);
-        SHOWCONDITION = 0;
     }
 }
 
@@ -409,7 +411,6 @@ void editare_nume(client CLIENT[100], int n)
     {
         cout << endl << "Succes! Numele clientului a fost modificat." << endl;
         system("Pause");
-        SHOWCONDITION = 0;
     }
     if (conditie != 0)
     {
@@ -417,7 +418,6 @@ void editare_nume(client CLIENT[100], int n)
         cout << "Nu s-a putut gasi niciun client cu acest nume." << endl;
         cin.get();
         cin.getline(x,2);
-        SHOWCONDITION = 0;
     }
 }
 
@@ -627,13 +627,13 @@ void clear_data(client CLIENT[100], int &n)
         }
         else
         {
-            cout << endl << "Returning to main menu..." << endl << endl;
+            cout << endl << "Returning to menu..." << endl << endl;
             system("Pause");
         }
     }
     else
     {
-        cout << endl << "Returning to main menu..." << endl << endl;
+        cout << endl << "Returning to menu..." << endl << endl;
         system("Pause");
     }
 }
@@ -770,26 +770,30 @@ void show_statistic_menu()
         case 1:
         clrscr();
         statistic_varsta(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_statistic_menu();
         break;
         case 2:
         clrscr();
         statistic_titlu(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_statistic_menu();
         break;
         case 3:
         clrscr();
         statistic_autor(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_statistic_menu();
         break;
         case 4:
         clrscr();
         statistic_tip(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_statistic_menu();
         break;
         case 5:
         clrscr();
-        SHOWCONDITION = 0;
+        show_main_menu();
         break;
     }
 }
@@ -819,10 +823,22 @@ void show_secret_menu()
     case 1:
     clrscr();
     clear_data(CLIENT,n);
-    SHOWCONDITION = 0;
+    clrscr();
+    show_secret_menu();
     break;
+    case 2:
+    clrscr();
+    break;
+    case 3:
+    clrscr();
+    break;
+    case 4:
+    clrscr();
+    break;
+    case 5:
+    clrscr();
+    show_main_menu();
     }
-
 }
 
 // Meniu pentru accesarea functiilor search_client si search_carte.
@@ -851,14 +867,18 @@ void show_search_menu()
         case 1:
         clrscr();
         search_client(CLIENT,n);
+        clrscr();
+        show_search_menu();
         break;
         case 2:
         clrscr();
         search_carte(CLIENT,n);
+        clrscr();
+        show_search_menu();
         break;
         case 3:
         clrscr();
-        SHOWCONDITION = 0;
+        show_main_menu();
         break;
     }
 }
@@ -889,26 +909,30 @@ void show_editcarte_menu()
         case 1:
         clrscr();
         editare_titlu(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_editcarte_menu();
         break;
         case 2:
         clrscr();
         editare_autor(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_editcarte_menu();
         break;
         case 3:
         clrscr();
         editare_tip(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_editcarte_menu();
         break;
         case 4:
         clrscr();
         editare_timp(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_editcarte_menu();
         break;
         case 5:
         clrscr();
-        SHOWCONDITION = 0;
+        show_edit_menu();
         break;
     }
 }
@@ -939,25 +963,30 @@ void show_edit_menu()
         case 1:
         clrscr();
         editare_nume(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_edit_menu();
         break;
         case 2:
         clrscr();
         editare_varsta(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_edit_menu();
         break;
         case 3:
         clrscr();
         show_editcarte_menu();
-        SHOWCONDITION = 0;
+        clrscr();
+        show_edit_menu();
         break;
         case 5:
-        SHOWCONDITION = 0;
+        clrscr();
+        gestionare_show_menu();
         break;
         case 4:
         clrscr();
         editare_cod(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        show_edit_menu();
         break;
     }
 }
@@ -988,19 +1017,22 @@ void gestionare_show_menu()
         case 1:
         clrscr();
         adaugare_client(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        gestionare_show_menu();
         break;
         case 2:
         clrscr();
         stergere_client(CLIENT,n);
-        SHOWCONDITION = 0;
+        clrscr();
+        gestionare_show_menu();
         break;
         case 3:
         clrscr();
         show_edit_menu();
-		 break;
+        break;
         case 4:
-        SHOWCONDITION = 0;
+        clrscr();
+        show_main_menu();
         break;
     }
 }
@@ -1044,7 +1076,8 @@ void show_sort_menu()
         afisare(CLIENT,n);
         break;
         case 4:
-        SHOWCONDITION = 0;
+        clrscr();
+        show_main_menu();
         break;
     }
 }
@@ -1067,7 +1100,7 @@ void read()
         }
 }
 
-// Loading screen animation. Self-explanatory.
+// Loading screen animation. Self-explanatory. (Fluctuatile in viteza progress barurului sunt intentionate)
 void loading_screen()
 {
     int i, y;
@@ -1118,6 +1151,7 @@ void show_main_menu()
         case 2:
         clrscr();
         afisare(CLIENT,n);
+        show_main_menu();
         break;
         case 3:
         clrscr();
@@ -1145,7 +1179,7 @@ void show_main_menu()
 
 int main()
 {
-    loading_screen();
+    //loading_screen();
     ifstream f("input.txt");
     int i;
     f >> n;
@@ -1163,12 +1197,5 @@ int main()
         f.get();
     }
     clrscr();
-    //SHOWCONDITION este variabla ce rezolva problema cu functii ce se apeleaza una pe alta
-    //SHOWCONDITION 0: Show Main Menu
-    while (SHOWCONDITION == 0)
-    {
-        clrscr();
-        SHOWCONDITION = 1;
-        show_main_menu();
-    }
+    show_main_menu();
 }
