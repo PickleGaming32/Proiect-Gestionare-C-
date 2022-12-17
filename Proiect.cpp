@@ -10,9 +10,12 @@ DE FACUT:
 -> search carte        x
 -> exit                x
 -> statistici          x
--> back
--> secret
+-> back                x
+-> clear data          x
 -> fisiere             x
+-> calculator          x
+-> animations?
+-> game???
 */
 
 #include <iostream>
@@ -21,6 +24,8 @@ DE FACUT:
 #include <windows.h>
 #include <fstream>
 #include <cstdio>
+#include "calfunctions.cpp"
+#include <cmath>
 
 using namespace std;
 
@@ -289,7 +294,6 @@ void search_client(client CLIENT[100], int n)
             cout << "TIMP RAMAS: " << CARTE[i].timp << " zile" << endl << endl;
 		    conditie = 1;
 		}
-
 	}
     if (conditie == 0)
 		{
@@ -804,9 +808,9 @@ void show_secret_menu()
     cout << "=============== Extra ==============" << endl;
     cout << "#                                  #" << endl;
     cout << "#   [1] Clear All Data             #" << endl;
-    cout << "#   [2] Open Calculator            #" << endl;
-    cout << "#   [3] Editare Tip                #" << endl;
-    cout << "#   [4] Editare Timp Ramas         #" << endl;
+    cout << "#   [2] Calculator                 #" << endl;
+    cout << "#   [3] Not yet implemented        #" << endl;
+    cout << "#   [4] Not yet implemented        #" << endl;
     cout << "#   [5] Back                       #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
@@ -828,6 +832,11 @@ void show_secret_menu()
     break;
     case 2:
     clrscr();
+    calcloadingscreen();
+    clrscr();
+    calcmenu();
+    clrscr();
+    show_secret_menu();
     break;
     case 3:
     clrscr();
@@ -1179,7 +1188,7 @@ void show_main_menu()
 
 int main()
 {
-    //loading_screen();
+    loading_screen();
     ifstream f("input.txt");
     int i;
     f >> n;
