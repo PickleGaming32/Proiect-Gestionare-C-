@@ -1,22 +1,29 @@
-3
-NU AM MAINI
-25547
-95
-TEST 2
-sex
-basm
-0
-Mihai Surub
-6868
-58
-MA CAC
-sex
-fabula
+4
+Alex Capota
+24370
+59
+O scrisoare pierduta
+Ion Luca Caragiale
+Comedie
 14
-Vasile Traian
-25547
-42
-Cel mai smeker om
-sex
-biografie
+Mihai Surub
+15350
+25
+Design Patterns
+Erich Gamma
+Manual
+14
+Marius Ventilator
+15006
+45
+Punguta cu doi bani
+Mihai Eminescu
+Fabula
+14
+Dorian Grau
+24371
+56
+O scrisoare pierduta
+Ion Luca Caragiale
+Comedie
 14

@@ -1,18 +1,5 @@
 /*
 DE FACUT:
--> functie sortare modulara x
--> afisare completa    x
--> stergere client     x
--> adaugare client     x
--> editare client      x
--> editare carte       x
--> search client       x
--> search carte        x
--> exit                x
--> statistici          x
--> back                x
--> clear data          x
--> fisiere             x
 -> calculator          x
 -> animations?
 -> game???
@@ -24,8 +11,7 @@ DE FACUT:
 #include <windows.h>
 #include <fstream>
 #include <cstdio>
-#include "calfunctions.cpp"
-#include <cmath>
+#include "calfunctions.cpp" // Custom header file!!!
 
 using namespace std;
 
@@ -45,6 +31,7 @@ struct client{
     carte carte_client[100];
 };
 
+// Declararea (prototipurilor?) de functii pentru a rezolva problema cu functii ce se apeleaza una pe alta
 void show_edit_menu();
 void show_editcarte_menu();
 void show_main_menu();
@@ -642,7 +629,8 @@ void clear_data(client CLIENT[100], int &n)
     }
 }
 
-
+// Functie ce compara, ca numere intregi, aparitiile titlurilor cartilor din data de baza.
+// Daca numarul de aparitii este egal la doua titluri ale carti diferite nu se arata un raspuns concret.
 void statistic_titlu(client CLIENT[100], int n)
 {
     int i, j, ok=0, maxx=0, save;
@@ -674,6 +662,8 @@ void statistic_titlu(client CLIENT[100], int n)
     system("Pause");
 }
 
+// Functie ce compara, ca numere intregi, aparitiile tipurilor cartilor din data de baza.
+// Daca numarul de aparitii este egal la doua tipuri diferite nu se arata un raspuns concret.
 void statistic_tip(client CLIENT[100], int n)
 {
     int i, j, ok=0, maxx=0, save;
@@ -705,6 +695,8 @@ void statistic_tip(client CLIENT[100], int n)
     system("Pause");
 }
 
+// Functie ce compara, ca numere intregi, aparitiile numelor autorilor din data de baza.
+// Daca numarul de aparitii este egal la doi autori diferiti nu se arata un raspuns concret
 void statistic_autor(client CLIENT[100], int n)
 {
     int i, j, ok=0, maxx=0, save;
@@ -736,6 +728,8 @@ void statistic_autor(client CLIENT[100], int n)
     system("Pause");
 }
 
+// Functie ce returneaza un numar de tip float (rational). Aduna valoarea varstelor tuturor clientilor din data de baza
+// si returneaza media generala.
 void statistic_varsta(client CLIENT[100], int n)
 {
     float result = 0;
@@ -1113,13 +1107,21 @@ void read()
 void loading_screen()
 {
     int i, y;
-    cout << R"(.____                     .___.__
-|    |    _________     __| _/|__| ____    ____
-|    |   /  _ \__  \   / __ | |  |/    \  / ___\
-|    |__(  <_> ) __ \_/ /_/ | |  |   |  \/ /_/  >
-|_______ \____(____  /\____ | |__|___|  /\___  /
-        \/         \/      \/         \//_____/  )" << endl << endl;
-    for (i = 0; i <49; i++)
+    cout << endl;
+    cout << R"($$\                                $$\ $$\
+$$ |                               $$ |\__|
+$$ |      $$$$$$\   $$$$$$\   $$$$$$$ |$$\ $$$$$$$\   $$$$$$\
+$$ |     $$  __$$\  \____$$\ $$  __$$ |$$ |$$  __$$\ $$  __$$\
+$$ |     $$ /  $$ | $$$$$$$ |$$ /  $$ |$$ |$$ |  $$ |$$ /  $$ |
+$$ |     $$ |  $$ |$$  __$$ |$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |
+$$$$$$$$\\$$$$$$  |\$$$$$$$ |\$$$$$$$ |$$ |$$ |  $$ |\$$$$$$$ |$$\ $$\ $$\
+\________|\______/  \_______| \_______|\__|\__|  \__| \____$$ |\__|\__|\__|
+                                                     $$\   $$ |
+                                                     \$$$$$$  |
+                                                      \______/
+
+)";
+    for (i = 0; i <74; i++)
     {
         y = 1+ (rand() % 130);
         cout << "=";
@@ -1195,6 +1197,7 @@ int main()
     f.get();
     for (i = 0; i < n; i++)
     {
+        // Preluarea datelor clientilor din input.txt
         f.getline(CLIENT[i].nume,99);
         f >> CLIENT[i].cod;
         f >> CLIENT[i].varsta;
