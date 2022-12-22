@@ -1,10 +1,3 @@
-/*
-DE FACUT:
--> calculator          x
--> animations?
--> game???
-*/
-
 #include <iostream>
 #include <cstring>
 #include <string.h>
@@ -565,11 +558,11 @@ void clear_data(client CLIENT[100], int &n)
     cin.get();
     cin.getline(x,4);
     cout << endl << endl;
-    if (strcasecmp(x,"Da") == 0)
+    if (strcasecmp(x,"Yes") == 0)
     {
         cout << "Are you REALLY sure?" << endl;
         cin.getline(y,4);
-        if (strcasecmp(y,"Da") == 0)
+        if (strcasecmp(y,"Yes") == 0)
         {
             cout << "3... " << endl;
             Sleep(630);
@@ -661,6 +654,57 @@ void statistic_titlu(client CLIENT[100], int n)
     cout<<endl<<endl;
     system("Pause");
 }
+
+// Luat de pe net, nu scris de mine (obv). Nu am nicio idee de ce merge dar arata smecher
+// Modificat doar pentru a permite durata custom a animatiei.
+void spinning_donut()
+{
+    int end;
+    cout << "Set duration for animation: ";
+    cin >> end;
+    int gleebus;
+    float A = 0, B = 0;
+    float i, j;
+    int k;
+    float z[1760];
+    char b[1760];
+    printf("\x1b[2J");
+    for(gleebus = 0; gleebus <= end; gleebus++) {
+        memset(b,32,1760);
+        memset(z,0,7040);
+        for(j=0; j < 6.28; j += 0.07) {
+            for(i=0; i < 6.28; i += 0.02) {
+                float c = sin(i);
+                float d = cos(j);
+                float e = sin(A);
+                float f = sin(j);
+                float g = cos(A);
+                float h = d + 2;
+                float D = 1 / (c * h * e + f * g + 5);
+                float l = cos(i);
+                float m = cos(B);
+                float n = sin(B);
+                float t = c * h * g - f * e;
+                int x = 40 + 30 * D * (l * h * m - t * n);
+                int y= 12 + 15 * D * (l * h * n + t * m);
+                int o = x + 80 * y;
+                int N = 8 * ((f * e - c * d * g) * m - c * d * e - f * g - l * d * n);
+                if(22 > y && y > 0 && x > 0 && 80 > x && D > z[o]) {
+                    z[o] = D;
+                    b[o] = ".,-~:;=!*#$@"[N > 0 ? N : 0];
+                }
+            }
+        }
+        printf("\x1b[H");
+        for(k = 0; k < 1761; k++) {
+            putchar(k % 80 ? b[k] : 10);
+            A += 0.00004;
+            B += 0.00002;
+        }
+        Sleep(30);
+    }
+}
+
 
 // Functie ce compara, ca numere intregi, aparitiile tipurilor cartilor din data de baza.
 // Daca numarul de aparitii este egal la doua tipuri diferite nu se arata un raspuns concret.
@@ -796,6 +840,92 @@ void show_statistic_menu()
     }
 }
 
+void encrypt()
+{
+    int i;
+    char input[1000];
+    cout << "Introduceti textul pe care doriti sa il criptati: " << endl;
+    cin.get();
+    cin.getline(input,999);
+    cout << endl;
+    for (i = 0; i < strlen(input); i++)
+        tolower(input[i]);
+    for (i = 0; i < strlen(input); i++)
+    {
+        if (input[i] == 122)
+            input[i] = 97;
+        else
+            input[i]++;
+    }
+    cout << endl;
+    cout << "Text criptat: " << input << endl;
+    system("Pause");
+}
+
+void decrypt()
+{
+    int i;
+    char input[1000];
+    cout << "Introduceti textul pe care doriti sa il decriptati: " << endl;
+    cin.get();
+    cin.getline(input,999);
+    cout << endl;
+    for (i = 0; i < strlen(input); i++)
+        tolower(input[i]);
+    for (i = 0; i < strlen(input); i++)
+    {
+        if (input[i] == 97)
+            input[i] = 122;
+        else
+            input[i]--;
+    }
+    cout << endl;
+    cout << "Text decriptat: " << input << endl;
+    system("Pause");
+}
+
+
+void show_code_menu()
+{
+    int choice_submenu;
+    cout << "============== Search ==============" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#   [1] Encrypt                    #" << endl;
+    cout << "#   [2] Decrypt                    #" << endl;
+    cout << "#   [3] Back                       #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "#                                  #" << endl;
+    cout << "====================================" << endl;
+    cout << endl;
+    cin >> choice_submenu;
+    switch (choice_submenu)
+    {
+    case 1:
+    clrscr();
+    encrypt();
+    clrscr();
+    show_code_menu();
+    break;
+    case 2:
+    clrscr();
+    decrypt();
+    clrscr();
+    show_code_menu();
+    break;
+    case 3:
+    clrscr();
+    show_secret_menu();
+    break;
+    }
+}
+
 void show_secret_menu()
 {
     int choice_submenu;
@@ -803,8 +933,8 @@ void show_secret_menu()
     cout << "#                                  #" << endl;
     cout << "#   [1] Clear All Data             #" << endl;
     cout << "#   [2] Calculator                 #" << endl;
-    cout << "#   [3] Not yet implemented        #" << endl;
-    cout << "#   [4] Not yet implemented        #" << endl;
+    cout << "#   [3] Spinning Donut             #" << endl;
+    cout << "#   [4] Augustus's Code            #" << endl;
     cout << "#   [5] Back                       #" << endl;
     cout << "#                                  #" << endl;
     cout << "#                                  #" << endl;
@@ -834,9 +964,16 @@ void show_secret_menu()
     break;
     case 3:
     clrscr();
+    spinning_donut();
+    system("Pause");
+    clrscr();
+    show_secret_menu();
     break;
     case 4:
     clrscr();
+    show_code_menu();
+    clrscr();
+    show_secret_menu();
     break;
     case 5:
     clrscr();
@@ -1067,16 +1204,19 @@ void show_sort_menu()
         clrscr();
         sort_nume(CLIENT,n);
         afisare(CLIENT,n);
+        show_sort_menu();
         break;
         case 2:
         clrscr();
         sort_cod(CLIENT,n);
         afisare(CLIENT,n);
+        show_sort_menu();
         break;
         case 3:
         clrscr();
         sort_timp(CLIENT,n);
         afisare(CLIENT,n);
+        show_sort_menu();
         break;
         case 4:
         clrscr();

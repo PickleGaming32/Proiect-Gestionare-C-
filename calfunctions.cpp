@@ -206,7 +206,7 @@ float power()
     cout << endl;
     cout << "y = ";
     cin >> y;
-    result = pow(x,y);
+    cout << "REZULTAT = " << pow(x,y) << endl;
     return result;
 }
 
@@ -371,7 +371,6 @@ void calcmenu()
     case 15:
     system("@cls||clear");
     power();
-    cout << "REZULTAT = " << result << endl;
     system("Pause");
     system("@cls||clear");
     calcmenu();
