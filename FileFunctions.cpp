@@ -1,4 +1,4 @@
-#include "EditFunctions.cpp"
+#include "LoginSystem.cpp"
 
 // Functie ce preia datele tuturor clientilor si le salveaza in fisierul "input.txt".
 void read()

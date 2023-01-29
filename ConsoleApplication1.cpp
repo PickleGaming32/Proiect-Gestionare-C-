@@ -1,5 +1,4 @@
 #include "CalcFunctions.cpp" // Custom header file!!!
-#include "LoginSystem.cpp"
 #include "MenuFunctions.cpp"
 
 using namespace std;
@@ -11,7 +10,7 @@ int main()
 {
     loading_screen();
     ifstream f("input.txt");
-    int i;
+    int i, userstate;
     f >> n;
     f.get();
     for (i = 0; i < n; i++)
@@ -28,7 +27,16 @@ int main()
         f.get();
     }
     startupLogin();
-    login();
-    clrscr();
-    show_main_menu();
+    login(userstate);
+    switch (userstate)
+    {
+    case 1:
+        clrscr();
+        show_main_menu();
+        break;
+    case 0:
+        clrscr();
+        showUsermenu();
+        break;
+    }
 }

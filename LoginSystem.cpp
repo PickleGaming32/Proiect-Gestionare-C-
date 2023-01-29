@@ -2,19 +2,22 @@
 #include <windows.h>
 #include <cstring>
 #include <fstream>
+#include "EditFunctions.cpp"
+
 
 using namespace std;
 
 #pragma warning(disable: 4996)
 
-void showmenu(), login();
+void showUsermenu(), login(int &p);
 
 struct USER{
     char *username = new char();
     char *password = new char();
 };
 
-int x, poz;
+int x, OBSOLETE;
+int poz;
 USER mainuser;
 USER *user = new USER[100];
 
@@ -34,7 +37,7 @@ void changeusername()
             strcpy(mainuser.username,newusername);
             cout << endl << "Username successfully changed." << endl;
             system("Pause");
-            showmenu();
+            showUsermenu();
         }
 }
 
@@ -54,7 +57,7 @@ void changepassword()
             strcpy(mainuser.password,newpassword);
             cout << endl << "Password successfully changed." << endl;
             system("Pause");
-            showmenu();
+            showUsermenu();
         }
 
 }
@@ -76,7 +79,7 @@ void signup()
             if(select == 'y')
                 signup();
             else
-                login();
+                login(OBSOLETE);
         }
     cout << "Enter password: ";
     cin.getline(temppass,100);
@@ -87,7 +90,7 @@ void signup()
     system("Pause");
 }
 
-void login()
+void login(int &p)
 {
     int i, cond = 0;
     char select;
@@ -97,12 +100,18 @@ void login()
     cin.getline(mainuser.username,100);
     cout << "Enter password: ";
     cin.getline(mainuser.password,100);
+    if ((strcmp(mainuser.username, "admin") == 0) && (strcmp(mainuser.password, "password") == 0))
+    {
+        p = 1;
+        return;
+    }
     for (i = 0; i < x; i++)
         if ((strcmp(user[i].username,mainuser.username) == 0) && (strcmp(user[i].password, mainuser.password) == 0))
         {
             cond = 1;
             strcpy(mainuser.username,user[i].username);
             strcpy(mainuser.password,user[i].password);
+            poz = i;
             break;
         }
     if (cond == 1)
@@ -121,6 +130,7 @@ void login()
         system("CLS");
         cout << "Successfully logged in!" << endl << endl;
         system("Pause");
+        p = 0;
     }
     else
     {
@@ -134,11 +144,11 @@ void login()
     case 'y':
         cin.get();
         signup();
-        login();
+        login(OBSOLETE);
         break;
     case 'n':
         cin.get();
-        login();
+        login(OBSOLETE);
         break;
     default:
         cout << "EROARE" << endl;
@@ -160,27 +170,44 @@ void save()
     }
 }
 
+void showUserInfo()
+{
+    cout << "===== " << CLIENT[poz].nume << " =====" << endl;
+    cout << "COD CLIENT: " << CLIENT[poz].cod << endl;
+    cout << "VARSTA: " << CLIENT[poz].varsta << " ani" << endl << endl;
+    cout << "TITLU CARTE: " << CARTE[poz].titlu << endl;
+    cout << "AUTOR: " << CARTE[poz].autor << endl;
+    cout << "TIP CARTE: " << CARTE[poz].tip << endl;
+    cout << "TIMP RAMAS: " << CARTE[poz].timp << " zile" << endl << endl << endl << endl << endl;
+}
 
-void showmenu()
+void showUsermenu()
 {
     system("CLS");
     int select;
     cout << "====== MENU ====== \n \n";
     cout << "[1] Change Username \n";
     cout << "[2] Change Password \n";
-    cout << endl << "[3] Exit \n \n";
+    cout << "[3] View Info \n \n";
+    cout << "[4] Exit \n \n";
     cin >> select;
     switch (select)
     {
     case 1:
         changeusername();
-        showmenu();
+        showUsermenu();
         break;
     case 2:
         changepassword();
-        showmenu();
+        showUsermenu();
         break;
     case 3:
+        clrscr();
+        showUserInfo();
+        system("Pause");
+        showUsermenu();
+        break;
+    case 4:
         system("CLS");
         save();
         exit(32);
