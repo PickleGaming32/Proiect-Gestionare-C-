@@ -1,26 +1,26 @@
 4
-Alex Capota
-24370
-59
+Alex Jordan
+15006
+45
 O scrisoare pierduta
 Ion Luca Caragiale
 Comedie
 14
-Mihai Surub
+Michael Jordan
 15350
 25
 Design Patterns
 Erich Gamma
 Manual
 14
-Marius Ventilator
-15006
-45
+John Smith
+24370
+59
 Punguta cu doi bani
 Mihai Eminescu
 Fabula
 14
-Dorian Grau
+Jane Doe
 24371
 56
 O scrisoare pierduta
