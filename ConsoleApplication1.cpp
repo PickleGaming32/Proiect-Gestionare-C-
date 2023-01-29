@@ -1,5 +1,5 @@
 #include "CalcFunctions.cpp" // Custom header file!!!
-// #include "LoginSystem.cpp"
+#include "LoginSystem.cpp"
 #include "MenuFunctions.cpp"
 
 using namespace std;
@@ -27,6 +27,8 @@ int main()
         f >> CARTE[i].timp;
         f.get();
     }
+    startupLogin();
+    login();
     clrscr();
     show_main_menu();
 }

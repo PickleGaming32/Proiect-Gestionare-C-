@@ -17,22 +17,21 @@ void show_main_menu()
 {
     int choice_menu;
     clrscr();
-    cout << "=============== MENU ===============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#  [1] Sortare                     #" << endl;
-    cout << "#  [2] Afisare Clienti             #" << endl;
-    cout << "#  [3] Gestionare Clienti          #" << endl;
-    cout << "#  [4] Cautare                     #" << endl;
-    cout << "#  [5] Statistics                  #" << endl;
-    cout << "#  [6] Exit                        #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#  [0] Extra                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "=============== MENU =============== \n";
+    cout << "#                                  # \n";
+    cout << "#  [1] Sortare                     # \n";
+    cout << "#  [2] Afisare Clienti             # \n";
+    cout << "#  [3] Gestionare Clienti          # \n";
+    cout << "#  [4] Cautare                     # \n";
+    cout << "#  [5] Statistics                  # \n";
+    cout << "#  [6] Exit                        # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#  [0] Extra                       # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_menu;
     switch (choice_menu)
     {
@@ -73,22 +72,21 @@ void show_main_menu()
 void gestionare_show_menu()
 {
     int choice_submenu;
-    cout << "========= Gestionare Client ========" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Adaugare Client            #" << endl;
-    cout << "#   [2] Stergere Client            #" << endl;
-    cout << "#   [3] Editare Client             #" << endl;
-    cout << "#   [4] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "========= Gestionare Client ======== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Adaugare Client            # \n";
+    cout << "#   [2] Stergere Client            # \n";
+    cout << "#   [3] Editare Client             # \n";
+    cout << "#   [4] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -119,22 +117,21 @@ void gestionare_show_menu()
 void show_sort_menu()
 {
     int choice_submenu;
-    cout << "=============== SORT ===============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#    DUPA:                         #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Nume Client                #" << endl;
-    cout << "#   [2] Cod Client                 #" << endl;
-    cout << "#   [3] Timp Ramas Imprumut        #" << endl;
-    cout << "#   [4] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "=============== SORT =============== \n";
+    cout << "#                                  # \n";
+    cout << "#    DUPA:                         # \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Nume Client                # \n";
+    cout << "#   [2] Cod Client                 # \n";
+    cout << "#   [3] Timp Ramas Imprumut        # \n";
+    cout << "#   [4] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -167,22 +164,21 @@ void show_sort_menu()
 void show_edit_menu()
 {
     int choice_submenu;
-    cout << "========== Editare Client ==========" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Editare Nume               #" << endl;
-    cout << "#   [2] Editare Varsta             #" << endl;
-    cout << "#   [3] Editare Carte              #" << endl;
-    cout << "#   [4] Editare Cod                #" << endl;
-    cout << "#   [5] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "========== Editare Client ========== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Editare Nume               # \n";
+    cout << "#   [2] Editare Varsta             # \n";
+    cout << "#   [3] Editare Carte              # \n";
+    cout << "#   [4] Editare Cod                # \n";
+    cout << "#   [5] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -221,22 +217,21 @@ void show_edit_menu()
 void show_editcarte_menu()
 {
     int choice_submenu;
-    cout << "========== Editare  Carte ==========" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Editare Titlu              #" << endl;
-    cout << "#   [2] Editare Autor              #" << endl;
-    cout << "#   [3] Editare Tip                #" << endl;
-    cout << "#   [4] Editare Timp Ramas         #" << endl;
-    cout << "#   [5] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "========== Editare  Carte ========== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Editare Titlu              # \n";
+    cout << "#   [2] Editare Autor              # \n";
+    cout << "#   [3] Editare Tip                # \n";
+    cout << "#   [4] Editare Timp Ramas         # \n";
+    cout << "#   [5] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -275,22 +270,21 @@ void show_editcarte_menu()
 void show_search_menu()
 {
     int choice_submenu;
-    cout << "============== Search ==============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Search Client              #" << endl;
-    cout << "#   [2] Search Carte               #" << endl;
-    cout << "#   [3] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "============== Search ============== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Search Client              # \n";
+    cout << "#   [2] Search Carte               # \n";
+    cout << "#   [3] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -316,22 +310,21 @@ void show_search_menu()
 void show_secret_menu()
 {
     int choice_submenu;
-    cout << "=============== Extra ==============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Clear All Data             #" << endl;
-    cout << "#   [2] Calculator                 #" << endl;
-    cout << "#   [3] Spinning Donut             #" << endl;
-    cout << "#   [4] Augustus's Code            #" << endl;
-    cout << "#   [5] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "=============== Extra ============== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Clear All Data             # \n";
+    cout << "#   [2] Calculator                 # \n";
+    cout << "#   [3] Spinning Donut             # \n";
+    cout << "#   [4] Augustus's Code            # \n";
+    cout << "#   [5] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -371,22 +364,21 @@ void show_secret_menu()
 void show_code_menu()
 {
     int choice_submenu;
-    cout << "============== Search ==============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Encrypt                    #" << endl;
-    cout << "#   [2] Decrypt                    #" << endl;
-    cout << "#   [3] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "============== Search ============== \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Encrypt                    # \n";
+    cout << "#   [2] Decrypt                    # \n";
+    cout << "#   [3] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -412,22 +404,21 @@ void show_code_menu()
 void show_statistic_menu()
 {
     int choice_submenu;
-    cout << "============ Statistic =============" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#   [1] Varsta                     #" << endl;
-    cout << "#   [2] Carte                      #" << endl;
-    cout << "#   [3] Autor                      #" << endl;
-    cout << "#   [4] Tip                        #" << endl;
-    cout << "#   [5] Back                       #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "#                                  #" << endl;
-    cout << "====================================" << endl;
-    cout << endl;
+    cout << "============ Statistic ============= \n";
+    cout << "#                                  # \n";
+    cout << "#   [1] Varsta                     # \n";
+    cout << "#   [2] Carte                      # \n";
+    cout << "#   [3] Autor                      # \n";
+    cout << "#   [4] Tip                        # \n";
+    cout << "#   [5] Back                       # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "#                                  # \n";
+    cout << "==================================== \n \n";
     cin >> choice_submenu;
     switch (choice_submenu)
     {
@@ -486,6 +477,6 @@ $$$$$$$$\\$$$$$$  |\$$$$$$$ |\$$$$$$$ |$$ |$$ |  $$ |\$$$$$$$ |$$\ $$\ $$\
         cout << "=";
         Sleep(y);
     }
-    cout << endl << endl << "Succes!" << endl << endl;
+    cout << " \n \n Succes! \n \n";
     system("Pause");
 }
