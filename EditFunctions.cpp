@@ -6,6 +6,14 @@
 
 #pragma warning(disable: 4996)
 
+struct USER {
+    char* username = new char();
+    char* password = new char();
+};
+
+USER mainuser;
+USER* user = new USER[100];
+
 struct carte {
     char titlu[256];
     char tip[256];
@@ -20,8 +28,9 @@ struct client {
     carte carte_client[100];
 };
 
+// x este numarul de utilizatori cu tot cu parole
 
-int n;
+int n, x;
 client CLIENT[100];
 carte CARTE[100];
 
@@ -98,7 +107,7 @@ void adaugare_client(client CLIENT[100], int& n)
 void stergere_client(client CLIENT[100], int& n)
 {
     int i, k, j, conditie = 0;
-    char x[51];
+    char select[51];
     for (j = 0; j < n; j++)
     {
         cout << "===== " << CLIENT[j].nume << " =====" << endl;
@@ -112,15 +121,17 @@ void stergere_client(client CLIENT[100], int& n)
     cout << endl << endl;
     cout << "Ce client doriti sa eliminati?" << endl << endl;
     cin.get();
-    cin.getline(x, 49);
+    cin.getline(select, 49);
     for (k = 0; k < n; k++)
-        if (stricmp(CLIENT[k].nume, x) == 0)
+        if (stricmp(CLIENT[k].nume, select) == 0)
         {
             for (i = k; i <= n; i++)
             {
                 strcpy(CLIENT[i].nume, CLIENT[i + 1].nume);
                 CLIENT[i] = CLIENT[i + 1];
+                user[i] = user[i + 1];
             }
+            x--;
             n--;
             conditie = 1;
         }
@@ -402,6 +413,7 @@ void sort_nume(client CLIENT[100], int n)
 {
     int i, j;
     client CLIENT_TEMP;
+    USER TEMP_USER;
     for (i = 0; i < n - 1; i++)
         for (j = i + 1; j < n; j++)
             if (strcmp(CLIENT[i].nume, CLIENT[j].nume) > 0)
@@ -412,6 +424,9 @@ void sort_nume(client CLIENT[100], int n)
                 CLIENT[i] = CLIENT[j];
                 strcpy(CLIENT[j].nume, CLIENT_TEMP.nume);
                 CLIENT[j] = CLIENT_TEMP;
+                TEMP_USER = user[i];
+                user[i] = user[j];
+                user[j] = TEMP_USER;
             }
 }
 
@@ -420,6 +435,7 @@ void sort_cod(client CLIENT[100], int n)
 {
     int i, j;
     client CLIENT_TEMP;
+    USER TEMP_USER;
     for (i = 0; i < n - 1; i++)
         for (j = i + 1; j < n; j++)
             if (CLIENT[i].cod > CLIENT[j].cod)
@@ -430,6 +446,9 @@ void sort_cod(client CLIENT[100], int n)
                 CLIENT[i] = CLIENT[j];
                 strcpy(CLIENT[j].nume, CLIENT_TEMP.nume);
                 CLIENT[j] = CLIENT_TEMP;
+                TEMP_USER = user[i];
+                user[i] = user[j];
+                user[j] = TEMP_USER;
             }
 }
 
@@ -438,6 +457,7 @@ void sort_timp(client CLIENT[100], int n)
 {
     int i, j;
     client CLIENT_TEMP;
+    USER TEMP_USER;
     for (i = 0; i < n - 1; i++)
         for (j = i + 1; j < n; j++)
             if (CLIENT[i].carte_client->timp > CLIENT[j].carte_client->timp)
@@ -448,6 +468,9 @@ void sort_timp(client CLIENT[100], int n)
                 CLIENT[i] = CLIENT[j];
                 strcpy(CLIENT[j].nume, CLIENT_TEMP.nume);
                 CLIENT[j] = CLIENT_TEMP;
+                TEMP_USER = user[i];
+                user[i] = user[j];
+                user[j] = TEMP_USER;
             }
 }
 

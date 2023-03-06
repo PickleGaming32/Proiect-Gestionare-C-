@@ -11,15 +11,14 @@ using namespace std;
 
 void showUsermenu(), login(int &p);
 
-struct USER{
-    char *username = new char();
-    char *password = new char();
-};
 
-int x, OBSOLETE;
+// userstate variabila ce verifica (cumva?) daca utilizatorul este admin sau nu
+
+int userstate;
 int poz;
-USER mainuser;
-USER *user = new USER[100];
+
+// mainuser contine si parola si usernameul utilizatorului CURENT.
+// toti utilizatorii si parolele lor sunt stocate intr-un fisier neincryptat (naspa)
 
 void changeusername()
 {
@@ -79,7 +78,7 @@ void signup()
             if(select == 'y')
                 signup();
             else
-                login(OBSOLETE);
+                login(userstate);
         }
     cout << "Enter password: ";
     cin.getline(temppass,100);
@@ -89,6 +88,8 @@ void signup()
     cout << "New user successfully registered!" << endl << endl;
     system("Pause");
 }
+
+// PARAMETRUL DIN FUNCTIA LOGIN ESTE PENTRU USERSTATE!!!!
 
 void login(int &p)
 {
@@ -144,11 +145,11 @@ void login(int &p)
     case 'y':
         cin.get();
         signup();
-        login(OBSOLETE);
+        login(userstate);
         break;
     case 'n':
         cin.get();
-        login(OBSOLETE);
+        login(userstate);
         break;
     default:
         cout << "EROARE" << endl;
@@ -156,6 +157,8 @@ void login(int &p)
         }
     }
 }
+
+// functie ce salveaza DOAR datele asociate cu sistemul de login (CUMVA NU DA CONFLICT CU FUNCTIA DE SAVE MAIN??? PIERDUTA???)
 
 void save()
 {

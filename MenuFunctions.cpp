@@ -55,6 +55,7 @@ void show_main_menu()
     case 6:
         clrscr();
         read();
+        save();
         exit(0);
         break;
     case 5:
@@ -453,30 +454,41 @@ void show_statistic_menu()
     }
 }
 
-// Loading screen animation. Self-explanatory. (Fluctuatile in viteza progress barurului sunt intentionate)
+void ShowConsoleCursor(bool showFlag)
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    CONSOLE_CURSOR_INFO     cursorInfo;
+
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = showFlag;
+    SetConsoleCursorInfo(out, &cursorInfo);
+}
+
 void loading_screen()
 {
-    int i, y;
-    cout << endl;
-    cout << R"($$\                                $$\ $$\
-$$ |                               $$ |\__|
-$$ |      $$$$$$\   $$$$$$\   $$$$$$$ |$$\ $$$$$$$\   $$$$$$\
-$$ |     $$  __$$\  \____$$\ $$  __$$ |$$ |$$  __$$\ $$  __$$\
-$$ |     $$ /  $$ | $$$$$$$ |$$ /  $$ |$$ |$$ |  $$ |$$ /  $$ |
-$$ |     $$ |  $$ |$$  __$$ |$$ |  $$ |$$ |$$ |  $$ |$$ |  $$ |
-$$$$$$$$\\$$$$$$  |\$$$$$$$ |\$$$$$$$ |$$ |$$ |  $$ |\$$$$$$$ |$$\ $$\ $$\
-\________|\______/  \_______| \_______|\__|\__|  \__| \____$$ |\__|\__|\__|
-                                                     $$\   $$ |
-                                                     \$$$$$$  |
-                                                      \______/
+    system("COLOR 0d");
+    system("cls");
+    ShowConsoleCursor(false);
+    SetConsoleCP(437);
+    SetConsoleOutputCP(437);
+    int bar1 = 177, bar2 = 219;
 
-)";
-    for (i = 0; i < 74; i++)
+    cout << "\n\n\n\t\t\t\tLoading...";
+    cout << "\n\n\n\t\t\t\t";
+
+    for (int i = 0; i < 25; i++)
+        cout << (char)bar1;
+
+    cout << "\r";
+    cout << "\t\t\t\t";
+    for (int i = 0; i < 25; i++)
     {
-        y = 1 + (rand() % 130);
-        cout << "=";
-        Sleep(y);
+        cout << (char)bar2;
+        Sleep(150);
     }
-    cout << " \n \n Succes! \n \n";
+
+    cout << "\n\t\t\t\t";
     system("Pause");
+    system("COLOR 07");
 }

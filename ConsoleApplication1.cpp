@@ -1,16 +1,25 @@
+/*
+
+Sistem gestionare date clienti si date bibiloteca, cu tot cu un sistem simplu de login/username/password etc.
+Din pacate, fiecare user poate avea o singura carte fiindca matricele sunt complicate.
+
+Duta Vlad, Roberto Maciuceanu
+
+(!!! Inca s-ar putea sa fie gandacei prin cod cu referire la sistemul de login, faptul ca o functie se apeleaza pe ea e un mister !!!)
+
+
+*/
+
 #include "CalcFunctions.cpp" // Custom header file!!!
 #include "MenuFunctions.cpp"
 
 using namespace std;
 
-// Mentionabil este faptul ca toate datele CLIENT.carte_client->titlu/tip/autor/timp sunt automat aduse in functie odata cu chemarea
-// CLIENT[100] ca parametru, doar ca se foloseste sintaxa CARTE.tip/autor/timp pentru accesarea si modificarea datelor
-
 int main()
 {
     loading_screen();
     ifstream f("input.txt");
-    int i, userstate;
+    int i;
     f >> n;
     f.get();
     for (i = 0; i < n; i++)

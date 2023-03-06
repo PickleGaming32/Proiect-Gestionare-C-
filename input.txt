@@ -1,29 +1,22 @@
-4
-Alex Jordan
-15006
-45
+3
+Duta Vlad
+32323
+17
 O scrisoare pierduta
 Ion Luca Caragiale
-Comedie
-14
-Michael Jordan
-15350
+Basm
+5
+Mihai Ionescu
+43958
 25
 Design Patterns
 Erich Gamma
-Manual
-14
-John Smith
-24370
-59
-Punguta cu doi bani
-Mihai Eminescu
-Fabula
-14
-Jane Doe
-24371
-56
+Tutorial
+10
+Daniel Popescu
+43255
+18
 O scrisoare pierduta
 Ion Luca Caragiale
-Comedie
-14
+Basm
+7
