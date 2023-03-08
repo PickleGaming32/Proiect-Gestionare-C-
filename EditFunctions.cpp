@@ -6,6 +6,9 @@
 
 #pragma warning(disable: 4996)
 
+// declarat prototip pentru ca ierarhia la headere exista
+void signup();
+
 struct USER {
     char* username = new char();
     char* password = new char();
@@ -67,12 +70,23 @@ void afisare(client CLIENT[100], int n)
 void adaugare_client(client CLIENT[100], int& n)
 {
     int y, i;
+    char select;
     y = rand();
     for (i = 0; i < n; i++)
         if (CLIENT[i].cod == y)
             y++;
     char rasp[10];
     cin.get();
+    cout << "Pentru a adauga un client nou, acest client va avea nevoie de un cont. Continuati? y/n \n";
+    cin >> select;
+    cin.get();
+    if (select == 'n')
+        return;
+    else
+    {
+        signup();
+        clrscr();
+    }
     cout << "Introduceti numele noului client: ";
     cin.getline(CLIENT[n].nume, 100);
     cout << "Introduceti varsta noului client: ";

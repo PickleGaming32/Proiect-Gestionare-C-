@@ -9,7 +9,7 @@ using namespace std;
 
 #pragma warning(disable: 4996)
 
-void showUsermenu(), login(int &p);
+void showUsermenu(), login(int& p);
 
 
 // userstate variabila ce verifica (cumva?) daca utilizatorul este admin sau nu

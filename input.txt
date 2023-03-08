@@ -1,22 +1,22 @@
 3
-Duta Vlad
-32323
-17
-O scrisoare pierduta
+Daniel Popescu
+43255
+18
+Amintiri din Copilarie
 Ion Luca Caragiale
 Basm
-5
-Mihai Ionescu
-43958
-25
+60
+Luta Vlad Cristian
+32323
+100
 Design Patterns
 Erich Gamma
 Tutorial
 10
-Daniel Popescu
-43255
-18
-O scrisoare pierduta
+Mihai Ionescu
+1
+25
+Amintiri din Copilarie
 Ion Luca Caragiale
 Basm
-7
+32

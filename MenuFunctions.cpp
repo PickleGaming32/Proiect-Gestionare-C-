@@ -140,18 +140,21 @@ void show_sort_menu()
         clrscr();
         sort_nume(CLIENT, n);
         afisare(CLIENT, n);
+        clrscr();
         show_sort_menu();
         break;
     case 2:
         clrscr();
         sort_cod(CLIENT, n);
         afisare(CLIENT, n);
+        clrscr();
         show_sort_menu();
         break;
     case 3:
         clrscr();
         sort_timp(CLIENT, n);
         afisare(CLIENT, n);
+        clrscr();
         show_sort_menu();
         break;
     case 4:
